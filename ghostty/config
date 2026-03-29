@@ -1,0 +1,61 @@
+# Shell
+command = /opt/homebrew/bin/fish
+
+# Font - CJK: Sarasa Term SC, English/Symbols: JetBrainsMono Nerd Font Mono
+font-family = Sarasa Term SC
+font-size = 16
+adjust-cell-height = 15%
+font-codepoint-map = U+0000-U+024F=JetBrainsMono Nerd Font Mono
+font-codepoint-map = U+0300-U+036F=JetBrainsMono Nerd Font Mono
+font-codepoint-map = U+2000-U+206F=JetBrainsMono Nerd Font Mono
+font-codepoint-map = U+2100-U+214F=JetBrainsMono Nerd Font Mono
+# Nerd Font symbols
+font-codepoint-map = U+E000-U+F8FF=JetBrainsMono Nerd Font Mono
+font-codepoint-map = U+F0000-U+FFFFF=JetBrainsMono Nerd Font Mono
+font-codepoint-map = U+100000-U+10FFFF=JetBrainsMono Nerd Font Mono
+font-codepoint-map = U+E200-U+E2A9=JetBrainsMono Nerd Font Mono
+font-codepoint-map = U+23FB-U+23FE=JetBrainsMono Nerd Font Mono
+font-codepoint-map = U+2665=JetBrainsMono Nerd Font Mono
+font-codepoint-map = U+26A1=JetBrainsMono Nerd Font Mono
+font-codepoint-map = U+2B58=JetBrainsMono Nerd Font Mono
+
+# Theme - Oil
+palette = 0=#11121b
+palette = 1=#ce6565
+palette = 2=#2e9e95
+palette = 3=#a6e3a1
+palette = 4=#89b4fa
+palette = 5=#bd8df3
+palette = 6=#47baae
+palette = 7=#faf6fe
+palette = 8=#313244
+palette = 9=#ce6565
+palette = 10=#2e9e95
+palette = 11=#f7d790
+palette = 12=#89b4fa
+palette = 13=#bd8df3
+palette = 14=#74d4c8
+palette = 15=#faf6fe
+background = #292A3A
+foreground = #cdd6f4
+cursor-color = #f7d790
+cursor-text = #11121b
+selection-background = #4cb7e4
+selection-foreground = #11121b
+
+# Window
+macos-titlebar-style = native
+window-titlebar-background = #292A3A
+window-titlebar-foreground = #cdd6f4
+
+# Split - 分屏自动均分 + 方向键切换面板
+keybind = cmd+d=new_split:right
+keybind = chain=equalize_splits
+keybind = cmd+shift+d=new_split:down
+keybind = chain=equalize_splits
+keybind = cmd+w=close_surface
+keybind = cmd+shift+equal=equalize_splits
+keybind = cmd+alt+left=goto_split:left
+keybind = cmd+alt+right=goto_split:right
+keybind = cmd+alt+up=goto_split:top
+keybind = cmd+alt+down=goto_split:bottom
