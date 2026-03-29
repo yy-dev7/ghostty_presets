@@ -106,6 +106,7 @@ fisher update
 | [jorgebucaran/autopair.fish](https://github.com/jorgebucaran/autopair.fish) | 自动配对括号和引号 |
 | [nickeb96/puffer-fish](https://github.com/nickeb96/puffer-fish) | `..` 自动展开为 `../..` |
 | [gazorby/fish-abbreviation-tips](https://github.com/gazorby/fish-abbreviation-tips) | 提示可用的缩写 |
+| [franciscolourenco/done](https://github.com/franciscolourenco/done) | 长时间命令结束后发送桌面通知 |
 
 ## 配置说明
 
@@ -145,6 +146,21 @@ fisher update
 cat  → bat          ls  → eza --icons    l   → eza --icons -la
 ll   → eza --icons -l   gg  → lazygit      cls → clear
 ```
+
+### Claude Code 通知
+
+全局配置 `~/.claude/settings.json` 中添加了 hooks，当 Claude Code 任务完成或需要输入时自动发送 macOS 桌面通知：
+
+```bash
+# 依赖
+brew install terminal-notifier
+```
+
+配置的两个 hook：
+- **Notification**: Claude 等待用户输入/权限确认时通知
+- **Stop**: Claude 完成任务时通知
+
+通知带有提示音，使用 Claude 图标（需安装 Claude 桌面端）。
 
 ## 许可
 
