@@ -20,6 +20,11 @@ if status is-interactive
     # fzf.fish - 禁用冲突快捷键，仅保留 Ctrl+R 搜索历史
     fzf_configure_bindings --directory= --git_log= --git_status= --variables=
 
+    # 导出命令耗时供 Starship 自定义模块读取
+    function __export_cmd_duration --on-event fish_postexec
+        set -gx STARSHIP_CMD_DURATION_MS $CMD_DURATION
+    end
+
     # Starship prompt
     starship init fish | source
 

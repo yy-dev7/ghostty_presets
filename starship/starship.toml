@@ -2,11 +2,11 @@
 
 format = """
 $directory\
-[](bg:yellow fg:peach)\
+[](bg:yellow fg:peach)\
 $git_branch\
 $git_status\
 $git_metrics\
-[](fg:yellow bg:green)\
+[](fg:yellow bg:green)\
 $c\
 $rust\
 $golang\
@@ -17,10 +17,10 @@ $java\
 $kotlin\
 $haskell\
 $python\
-[](fg:green bg:lavender)\
+[](fg:green bg:lavender)\
 $time\
-[ ](fg:lavender)\
-$cmd_duration\
+[ ](fg:lavender)\
+${custom.duration}\
 $line_break\
 $character"""
 
@@ -31,23 +31,23 @@ disabled = false
 style = "bg:red fg:crust"
 
 [os.symbols]
-Windows = "0"
+Windows = "0"
 Ubuntu = "󰕈"
-SUSE = "2"
+SUSE = "2"
 Raspbian = "󰐿"
 Mint = "󰓭"
 Macos = "󰄛"
-Manjaro = "2"
+Manjaro = "2"
 Linux = "󰌽"
 Gentoo = "󰓨"
 Fedora = "󰓛"
-Alpine = "0"
-Amazon = "0"
-Android = "2"
-AOSC = "1"
+Alpine = "0"
+Amazon = "0"
+Android = "2"
+AOSC = "1"
 Arch = "󰓇"
 Artix = "󰓇"
-CentOS = "4"
+CentOS = "4"
 Debian = "󰓚"
 Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
@@ -60,19 +60,19 @@ format = '[ $user]($style)'
 
 [directory]
 style = "bg:peach fg:crust"
-format = "[  $path ]($style)"
+format = "[  $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
 [directory.substitutions]
 "Documents" = "󰈙 "
-"Downloads" = "9 "
+"Downloads" = "9 "
 "Music" = "󰝚 "
-"Pictures" = "0 "
+"Pictures" = "0 "
 "Developer" = "󰲻 "
 
 [git_branch]
-symbol = ""
+symbol = ""
 style = "bg:yellow"
 format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 
@@ -87,52 +87,52 @@ deleted_style = "fg:crust bg:yellow"
 format = '[[+$added/-$deleted ](fg:crust bg:yellow)]($style)'
 
 [nodejs]
-symbol = ""
+symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 [bun]
-symbol = ""
+symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 
 [c]
-symbol = " "
+symbol = " "
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [rust]
-symbol = ""
+symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [golang]
-symbol = ""
+symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [php]
-symbol = ""
+symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [java]
-symbol = " "
+symbol = " "
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [kotlin]
-symbol = ""
+symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [haskell]
-symbol = ""
+symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [python]
-symbol = ""
+symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:green)]($style)'
 
@@ -159,12 +159,27 @@ vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
-show_milliseconds = true
-format = "[](fg:surface1)[  $duration ]($style)[](fg:surface1) "
+disabled = true
+
+[custom.duration]
+command = '''
+if test $STARSHIP_CMD_DURATION_MS -ge 3600000
+    set -l h (math "floor($STARSHIP_CMD_DURATION_MS / 3600000)")
+    set -l m (math "floor($STARSHIP_CMD_DURATION_MS % 3600000 / 60000)")
+    printf '%dh%dm' $h $m
+else if test $STARSHIP_CMD_DURATION_MS -ge 60000
+    set -l m (math "floor($STARSHIP_CMD_DURATION_MS / 60000)")
+    set -l s (math -s2 "($STARSHIP_CMD_DURATION_MS % 60000) / 1000")
+    printf '%dm%ss' $m $s
+else
+    printf '%ss' (math -s2 "$STARSHIP_CMD_DURATION_MS / 1000")
+end
+'''
+when = 'test -n "$STARSHIP_CMD_DURATION_MS" -a "$STARSHIP_CMD_DURATION_MS" -gt 2000'
+format = "[](fg:surface1)[ 󱑇 $output ](bg:surface1 fg:subtext0)[](fg:surface1) "
 style = "bg:surface1 fg:subtext0"
+shell = ["fish"]
 disabled = false
-show_notifications = true
-min_time_to_notify = 45000
 
 [palettes.pastel_powerline]
 # M365Princess segment colors
