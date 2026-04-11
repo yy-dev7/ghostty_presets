@@ -1,3 +1,9 @@
+# --- Zellij-tmux-shim (Claude Code agent teams in zellij) ---
+if set -q ZELLIJ
+    set -l _shim "$HOME/.local/share/zellij-tmux-shim/activate.fish"
+    test -f "$_shim"; and source "$_shim"
+end
+
 if status is-interactive
     # Abbreviations - 输入后自动展开为完整命令，历史记录更清晰
     abbr --add cat 'bat'
@@ -13,7 +19,7 @@ if status is-interactive
     abbr --add gcmsg 'git commit -m'
     abbr --add ggf 'git push --force origin (__git.current_branch)'
     abbr --add gpsup 'git push --set-upstream origin (__git.current_branch)'
-    abbr --add php_docker 'docker exec -it php-nginx-fpm bash'
+    abbr --add php_docker 'docker exec -it -w /data/web/survey-admin php-nginx-fpm bash'
     abbr --add python python3
     abbr --add yolo 'claude --dangerously-skip-permissions'
 
@@ -51,3 +57,7 @@ fish_add_path $HOME/Library/Python/3.9/bin
 fish_add_path /opt/homebrew/opt/ruby/bin
 fish_add_path $BUN_INSTALL/bin
 fish_add_path $ANDROID_HOME/platform-tools
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :
